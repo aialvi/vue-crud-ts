@@ -8,9 +8,9 @@
         class="btn btn-outline-primary"
         data-toggle="modal"
         data-target="#exampleModal"
-        @click= "addPost"
+        @click="addPost"
       >
-        Add Post 
+        Add Post
       </button>
     </div>
 
@@ -30,7 +30,7 @@
           <td>{{ post.name }}</td>
           <td>{{ post.category }}</td>
           <td>
-           <button class="btn btn-primary" v-on:click="editItem(post._id)">
+            <button class="btn btn-primary" v-on:click="editItem(post._id)">
               Edit
             </button>
           </td>
@@ -54,8 +54,8 @@ export default class Index extends Vue {
   @Prop() private msg!: string;
   public posts: Array<object> = [
     {
-      name: 'Learn VueJS',
-      category: 'Vue'
+      name: "Learn VueJS",
+      category: "Vue"
     }
   ];
   // get postAdd(): string {
@@ -63,14 +63,11 @@ export default class Index extends Vue {
   // };
 
   public addPost(): void {
-    alert('clicked');
+    alert("clicked");
     console.log(this.posts);
-    
   }
-
 }
 </script>
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
@@ -102,7 +99,7 @@ td {
 }
 
 .btn-primary {
-  background: #1E88E5;
+  background: #1e88e5;
   color: white;
 }
 
@@ -110,5 +107,4 @@ td {
   background: #bb2124;
   color: white;
 }
-
 </style>
