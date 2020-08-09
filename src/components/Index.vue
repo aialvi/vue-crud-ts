@@ -259,9 +259,6 @@ td {
   width: 80%;
 }
 
-.form-control{
-  
-}
 
 /* The Close Button */
 .close {
