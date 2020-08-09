@@ -2,7 +2,6 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Posts</router-link>
-      
     </div>
     <router-view />
   </div>

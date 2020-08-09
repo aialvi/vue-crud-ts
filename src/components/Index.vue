@@ -9,7 +9,6 @@
         data-toggle="modal"
         data-target="#exampleModal"
         @click="addPostModal"
-        
       >
         Add Post
       </button>
@@ -36,110 +35,92 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-danger" v-on:click="deletePostButton(post._id)">
+            <button
+              class="btn btn-danger"
+              v-on:click="deletePostButton(post._id)"
+            >
               Delete
             </button>
           </td>
         </tr>
       </tbody>
 
-    <!-- Popup Modal -->
+      <!-- Popup Modal -->
 
-    <div id="myModal" class="modal" v-if="showModalPost">
-
+      <div id="myModal" class="modal" v-if="showModalPost">
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close" @click="closeModal">&times;</span>
 
           <form v-on:submit.prevent="addPostButton">
-          <div class="form-group">
-            <label>Post Name: </label>
-            <input
-              type="text"
-              id="post-name-id"
-              class="form-control"
-              v-model="tempName"
-              required
-
-            />
-           
-          </div>
-
-          
-
-            
+            <div class="form-group">
+              <label>Post Name: </label>
+              <input
+                type="text"
+                id="post-name-id"
+                class="form-control"
+                v-model="tempName"
+                required
+              />
+            </div>
 
             <div class="form-group">
-              <br>
+              <br />
               <label for="categories">Select Category: </label>
-              
-                    <select
-                      v-model="tempCategory"
-                      v-on:change="getCategoryName($event)"
-                      class="form-control form-control-sm"
-                    >
-                      <option value="CreateCategory">Create New Category</option
-                      >
-                      <option
-                      
-                        v-for="category in posts"
-                        :key="category.id"
-                        :value="category.category"
-                        >{{ category.category }}</option
-                      >
-                    </select>
-                  </div>
 
-                  
+              <select
+                v-model="tempCategory"
+                v-on:change="getCategoryName($event)"
+                class="form-control form-control-sm"
+              >
+                <option value="CreateCategory">Create New Category</option>
+                <option
+                  v-for="category in posts"
+                  :key="category.id"
+                  :value="category.category"
+                  >{{ category.category }}</option
+                >
+              </select>
+            </div>
 
-          <div class="form-group">
-            <br>
-            <input type="submit" class="btn btn-primary" value="Add Post" />
-          </div>
-        </form>
-
+            <div class="form-group">
+              <br />
+              <input type="submit" class="btn btn-primary" value="Add Post" />
+            </div>
+          </form>
         </div>
+      </div>
 
-    </div>
-
-    <div id="myModal2" class="modal" v-if="showModalCategory" >
-
+      <div id="myModal2" class="modal" v-if="showModalCategory">
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close" @click="closeModalCategory">&times;</span>
 
           <form v-on:submit.prevent="addPostButton">
-          <div class="form-group">
-            <label>Category Name: </label>
-            <input
-              style="margin: 20px;"
-              type="text"
-              id="post-name-id"
-              class="form-control"
-              v-model="tempCategory"
-              required
+            <div class="form-group">
+              <label>Category Name: </label>
+              <input
+                style="margin: 20px;"
+                type="text"
+                id="post-name-id"
+                class="form-control"
+                v-model="tempCategory"
+                required
+              />
 
-            />
+              <br />
+            </div>
 
-            <br>
-           
-          </div>
-
-          
-
-            
-
-            
-
-          <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Add Category" />
-          </div>
-        </form>
-
+            <div class="form-group">
+              <input
+                type="submit"
+                class="btn btn-primary"
+                value="Add Category"
+              />
+            </div>
+          </form>
         </div>
-
-    </div>
-
+      </div>
     </table>
     <Create />
   </div>
@@ -155,9 +136,9 @@ export default class Index extends Vue {
   private showModalCategory = false;
   private emptyField = false;
 
-  private tempName= '';
-  private tempCategory = '';
-  
+  private tempName = "";
+  private tempCategory = "";
+
   private posts: Array<object> = [
     {
       name: "Learn VueJS",
@@ -177,23 +158,22 @@ export default class Index extends Vue {
   public closeModalCategory(): void {
     this.showModalCategory = false;
   }
-  public addPostButton(nameValue: string, categoryValue: string): void {
-      console.log('post added');
-      this.posts.push({name: this.tempName, category: this.tempCategory});
+  public addPostButton(): void {
+    console.log("post added");
+    this.posts.push({ name: this.tempName, category: this.tempCategory });
   }
-  public deletePostButton(postid: any): any {
-      console.log('deleted');
-      this.posts.splice(postid, 1);
+  public deletePostButton(postid: number) {
+    console.log("deleted");
+    this.posts.splice(postid, 1);
   }
 
   public getCategoryName(e: any) {
-      const value = e.target.value;
-      if (value == "CreateCategory") {
-        this.tempCategory = '';
-        this.showModalCategory = true;
-      };
-    
-}
+    const value = e.target.value;
+    if (value == "CreateCategory") {
+      this.tempCategory = "";
+      this.showModalCategory = true;
+    }
+  }
 }
 </script>
 
@@ -237,7 +217,6 @@ td {
 }
 
 .modal {
-  
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 100px; /* Location of the box */
@@ -246,8 +225,8 @@ td {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content */
@@ -258,7 +237,6 @@ td {
   border: 1px solid #888;
   width: 80%;
 }
-
 
 /* The Close Button */
 .close {
